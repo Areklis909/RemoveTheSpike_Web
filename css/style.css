@@ -1,49 +1,50 @@
-
-html {
-		background-color: #868a6d;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		margin: 0;
+* {
+	box-sizing: border-box;
 }
-	
+
+
+/* Style the website content */
 body {
-	background-color: #333;
-	border: solid black 5px;
-	margin: 1% 10% 1% 10%;
-	font-size: 100%;
+	/* border-top: solid black 5px;
+	border-left: solid black 5px;
+	border-right: solid black 5px; */
 
+	background-color: #141414;
+	margin: 1% 20% 1% 20%;
+	font-size: 100%;
 }
 
+/* Style the header of the website */
 header {
 	border-bottom: solid white 1px;
 	border-top: solid white 1px;
-	background-image: url("../img/header_background3.png");
-	background-size: cover;
+	background-image: url("../img/header_background.png");
+	background-size: contain;
 	background-position: top right;
 	margin: 0px;
 	font-size: 2em;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+
+/* Style the naviation bar */
 nav {
 	border-bottom: solid white 1px;
 }
 
-h2 {
-	color: #ced2db;
-}
-
+/* Style the h1 element used in the website header */
 h1 {
 	text-align: center;
 	color: #131416;
 }
 
-section {
-	text-align: justify;
-	text-indent: 1em;
-	font-family: Arial, Helvetica, sans-serif;
+/* Style the h2 element */
+h2 {
+	color: #ced2db;
 }
 
+
+/* Style the navigation bar links */
 ul.menucontent {
 	list-style-type: none;
 	margin: 0;
@@ -51,7 +52,6 @@ ul.menucontent {
 	overflow: hidden;
 	background-color: #333;
 	font-family: Arial, Helvetica, sans-serif;
-
 }
 
 li.menucontent {
@@ -69,4 +69,43 @@ li.menucontent a {
 
 li.menucontent a:hover {
 	background-color: #111;
+}
+
+
+/* Style the section used in the main body of the website */
+.row::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.row {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #ced2db;
+}
+
+.leftcolumn {
+	float: left;
+	width: 75%;
+}
+
+.rightcolumn {
+	float: left;
+	width: 25%;
+	padding-left: 20px;
+}
+
+.card {
+	background-color: #333;
+	padding: 20px;
+	margin-top: 20px;
+	border-style: inset;
+	border-color: #e3e6e0;
+	border-width: 4px;
+}
+
+.topcontainer {
+	border-top: solid white 2px;
+	border-left: solid white 2px;
+	border-right: solid white 2px;
 }
