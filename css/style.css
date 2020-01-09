@@ -5,32 +5,46 @@
 
 /* Style the website content */
 body {
-	/* border-top: solid black 5px;
-	border-left: solid black 5px;
-	border-right: solid black 5px; */
-
 	background-color: #141414;
 	margin: 1% 20% 1% 20%;
 	font-size: 100%;
 }
 
+.topcontainer {
+	border-color: #14A76C;
+	border-style: solid;
+	border-width: 4px;
+}
 /* Style the header of the website */
-header {
-	border-bottom: solid white 1px;
-	border-top: solid white 1px;
+/* header {
 	background-image: url("../img/header_background.png");
-	background-size: contain;
+	background-size: cover;
 	background-position: top right;
 	margin: 0px;
 	font-size: 2em;
 	font-family: Arial, Helvetica, sans-serif;
+} */
+
+.imagecontainer {
+	position: relative;
+	text-align: center;
+	font-size: 4em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: black;
 }
 
-
-/* Style the naviation bar */
-nav {
-	border-bottom: solid white 1px;
+.imagecontainer img {
+	width: 100%;
+	height: auto;
 }
+
+.centeredtext {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 
 /* Style the h1 element used in the website header */
 h1 {
@@ -96,16 +110,12 @@ li.menucontent a:hover {
 }
 
 .card {
-	background-color: #333;
+	background-color: #272727;
 	padding: 20px;
 	margin-top: 20px;
 	border-style: inset;
-	border-color: #e3e6e0;
+	border-color: #14A76C;
 	border-width: 4px;
 }
 
-.topcontainer {
-	border-top: solid white 2px;
-	border-left: solid white 2px;
-	border-right: solid white 2px;
-}
+
