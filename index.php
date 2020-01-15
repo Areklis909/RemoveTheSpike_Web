@@ -43,8 +43,8 @@
 							</dd>
 						</dl>
 					</p>
-					<form method="post" enctype="multipart/form-data">
-						<input type="file" name="files[]"/>
+					<form action="server/file_upload.php" method="post" enctype="multipart/form-data">
+						<input id="upload" type="file" name="upfile"/>
 						<input type="submit" value="Upload File" name="submit" />
 					</form>
 				</div>
