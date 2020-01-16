@@ -58,7 +58,9 @@ try {
             throw new RuntimeException('Failed to move uploaded file.');
     }
 
-    echo 'File is uploaded successfully.';
+    // echo 'File is uploaded successfully.';
+    $command = sprintf("/usr/bin/php process_task.php %s > /dev/null", $target_filename);
+    exec($command);
 
 } catch (RuntimeException $e) {
 
