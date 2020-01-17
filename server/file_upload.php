@@ -1,12 +1,14 @@
 <?php
 
 
-define(max_upload_size, 10000 * 1024);
-define(upload_path, '../uploads/');
+define('max_upload_size', 10000 * 1024);
+define('upload_path', '../uploads/');
+define('pidfile', '../pids/');
 $extension_array = array(
     '.mp3',
     '.wav'
 );
+
 header('Content-Type: text/plain; charset=utf-8');
 
 try {
@@ -58,9 +60,7 @@ try {
             throw new RuntimeException('Failed to move uploaded file.');
     }
 
-    // echo 'File is uploaded successfully.';
-    $command = sprintf("/usr/bin/php process_task.php %s > /dev/null", $target_filename);
-    exec($command);
+    include('process_task.php');
 
 } catch (RuntimeException $e) {
 
