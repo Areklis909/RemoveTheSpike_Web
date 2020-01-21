@@ -9,7 +9,7 @@ class Logger {
     private $log_fd;
 
     function __construct($logname) {
-        $this->log_name = $logname;
+        $this->$log_name = $logname;
         $this->$log_fd = fopen($this->$log_name, self::file_mode);
     }
 

@@ -20,11 +20,11 @@ class FileValidator {
     function __destruct() {}
 
     function get_extension() {
-        return $this->$ext;
+        return $this->ext;
     }
 
     function is_extension_valid($filename) {
-        $this->$ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $this->ext = pathinfo($filename, PATHINFO_EXTENSION);
         $valid_extension = false;
         foreach(self::extension_array as $extension) {
             $valid_extension = array_search($extension, self::extension_array);
