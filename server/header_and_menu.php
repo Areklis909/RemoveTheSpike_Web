@@ -7,7 +7,7 @@ echo '<head>
 											If you are annoyed by ticks, pops, crackles and clicks while listening to your favorite recordings, this tool is probably for you.">
 											
 		<title>RemoveTheSpike - impulse disturbance elimination</title>
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css?">
 	</head>
 	<body>
 	

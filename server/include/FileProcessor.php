@@ -31,6 +31,10 @@ class FileProcessor {
         $this->file_name = basename($this->file_full_path);
     }
 
+    function __destruct() {
+        $this->clean_up();
+    }
+
     function remove_the_spike() {
         $this->log_file = realpath(self::log_path) . self::slash . $this->file_name . self::log_ending;
         $this->pid_file = realpath(self::pid_path) . self::slash . $this->file_name . self::pid_ending;

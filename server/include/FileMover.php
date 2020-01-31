@@ -18,6 +18,10 @@ class FileMover {
         }
     }
 
+    function __destruct() {
+        $this->clean_up();
+    }
+
     function clean_up() {
         $rm_uploaded_file = self::rm_command . $this->target_file_name_full_path;
         exec($rm_uploaded_file);

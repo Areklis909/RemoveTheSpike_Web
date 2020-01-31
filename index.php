@@ -24,7 +24,7 @@
 										<li>pops - short length, appearing in bigger intervals</li>
 										<li>crackles - short length, appearing in short intervals, low amplitude</li>
 										<li>clicks - complex shape, high amplitude</li>
-										<li>scratch nosie pulses - long length, initially the amplitude is high. In the second phase we can observe declining oscillating signal</li>
+										<li>scratch noise pulses - long length, initially the amplitude is high. In the second phase we can observe declining oscillating signal</li>
 									</ul>
 
 								</p>
@@ -43,13 +43,13 @@
 							</dd>
 						</dl>
 					</p>
+					<div id="uploader">Drag file here</div>
 					<form action="server/file_upload.php" method="post" enctype="multipart/form-data">
 						<input id="upload" type="file" name="upfile"/>
 						<input type="submit" value="Upload File" name="submit" />
 					</form>
 				</div>
 			</div>
-
 			<div class="rightcolumn">
 				<div class="card">
 					<h2>Last post</h2>
@@ -68,5 +68,5 @@
 	
 	</body>
 
-	<script src="scripts/script.js"></script>
+	<script src="scripts/drag_upload.js"></script>
 </html>
