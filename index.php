@@ -43,11 +43,12 @@
 							</dd>
 						</dl>
 					</p>
-					<div id="uploader">Drag file here</div>
+					<div class="uploaderidle" id="uploader">Drag file here</div>
 					<form action="server/file_upload.php" method="post" enctype="multipart/form-data">
 						<input id="upload" type="file" name="upfile"/>
-						<input type="submit" value="Upload File" name="submit" />
+						<input type="submit" onclick="displayInfo()" value="Upload File" name="submit" />
 					</form>
+					<p id="infotext"></p>
 				</div>
 			</div>
 			<div class="rightcolumn">

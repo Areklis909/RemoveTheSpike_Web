@@ -2,17 +2,6 @@
 	box-sizing: border-box;
 }
 
-#uploader {
-	width: 100%;
-	height: 200px;
-	background: #464144;
-	padding: 10px;
-	text-align: center;
-	vertical-align: middle;
-	line-height: 200px;
-	margin-bottom: 10px;
-}
-
 /* Style the website content */
 body {
 	background-color: #141414;
@@ -124,6 +113,36 @@ dd.neednewlineafterthis::after {
 	content: "\A";
 	white-space: pre;
 }
+
+
+.uploaderidle {
+	width: 100%;
+	height: 200px;
+	background: #464144;
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 200px;
+	margin-bottom: 10px;
+}
+
+.uploaderactive {
+	width: 100%;
+	height: 200px;
+	background: #868184;
+	color: #000000;
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 200px;
+	margin-bottom: 10px;
+}
+
+.serverinfo {
+	color: #1fe678;
+}
+
+
 
 
 

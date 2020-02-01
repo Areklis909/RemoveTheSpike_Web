@@ -3,8 +3,8 @@
 class FileValidator {
     
     const extension_array = array(
-        '.mp3',
-        '.wav'
+        'mp3',
+        'wav'
     );
 
     const no_file_sent_str = 'No file sent.';
@@ -27,7 +27,7 @@ class FileValidator {
         $this->ext = pathinfo($filename, PATHINFO_EXTENSION);
         $valid_extension = false;
         foreach(self::extension_array as $extension) {
-            $valid_extension = array_search($extension, self::extension_array);
+            $valid_extension = array_search($this->ext, self::extension_array);
             if($valid_extension == true) {
                 break;
             }
