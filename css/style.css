@@ -85,7 +85,8 @@ li.menucontent a:hover {
 }
 
 .row {
-	font-family: Arial, Helvetica, sans-serif;
+	/* font-family: Arial, Helvetica, sans-serif; */
+	font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 	color: #ced2db;
 }
 

@@ -15,7 +15,7 @@
 					<p>
 						<dl>
 							<dt>Impulse disturbance - what is it?</dt>
-							<dd class="neednewlineafterthis">
+							<dd>
 								<p>
 									This is the name for the whole spectrum of short clicking noises we can hear in the recordings.
 									We can differentiate several kinds of disturbances:
@@ -29,6 +29,14 @@
 
 								</p>
 							</dd>
+						</dl>
+							<div class="uploaderidle" id="uploader">Drag file here</div>
+							<input id="upload" type="file" name="upfile"/>
+							<input id='submit' type="submit" onclick="" value="Upload File" name="submit" />
+							<p id="infotext"></p>
+
+							<span class="neednewlineafterthis"></span>
+						<dl>
 							<dt>How are they created?</dt>
 							<dd>
 								<p>
@@ -43,12 +51,10 @@
 							</dd>
 						</dl>
 					</p>
-					<div class="uploaderidle" id="uploader">Drag file here</div>
-					<form action="server/file_upload.php" method="post" enctype="multipart/form-data">
+					<!-- <div class="uploaderidle" id="uploader">Drag file here</div>
 						<input id="upload" type="file" name="upfile"/>
-						<input type="submit" onclick="displayInfo()" value="Upload File" name="submit" />
-					</form>
-					<p id="infotext"></p>
+						<input id='submit' type="submit" onclick="" value="Upload File" name="submit" />
+					<p id="infotext"></p> -->
 				</div>
 			</div>
 			<div class="rightcolumn">

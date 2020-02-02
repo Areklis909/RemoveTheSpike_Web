@@ -1,13 +1,17 @@
-
-class DragFieldManager {
+class UploadManager {
 
     constructor(dragFieldName) {
         this.dragField = dragFieldName;
         this.dragFieldActiveName = 'uploaderactive';
         this.dragFieldIdleName = 'uploaderidle';
+        this.dragEnterEventName = 'dragenter';
+        this.dragLeaveEventName = 'dragleave';
         this.dragOverEventName = 'dragover';
-        this.dragExitEventName = 'dragexit';
         this.dropEventName = 'drop';
+    }
+
+    checkSupport() {
+        return window.FileReader && window.Blob && window.FormData && XMLHttpRequest;
     }
 
     dragFieldActive() {
@@ -79,34 +83,71 @@ class DragFieldManager {
         return xhr;
     }
 
+    getFileFromInput(e, context) {
+        context.updateServerInfo();
+        var upload = document.getElementById('upload');
+        if('files' in upload) {
+            for(var i = 0; i < upload.files.length; i++) {
+                var data = new FormData();
+                data.append('upfile', upload.files[i]);
+                var xhr = context.prepareFileUploadRequest(e, context);
+                xhr.send(data);
+            }
+        }
+    }
+
+    initButtonEvents() {
+
+        if(this.checkSupport() == false) {
+            alert("Your browser is probably lacking the support some features needed for this website to work correctly. Please update or use another browser.");
+            return;
+        }
+
+        var submit = document.getElementById('submit');
+        var context = this;
+        submit.addEventListener('click', function(e) {
+            context.getFileFromInput(e, context);
+        });
+    }
+
     initDragField() {
+
+        if(this.checkSupport() == false) {
+            return;
+        }
+
         var uploader = document.getElementById(this.dragField);
         var context = this;
-        uploader.addEventListener(this.dragOverEventName, function(e) {
+
+        uploader.addEventListener(this.dragEnterEventName, function(e) {
             e.preventDefault();
             e.stopPropagation();
-
             context.dragFieldActive();
         });
 
-        uploader.addEventListener(this.dragExitCallback, function(e) {
+        uploader.addEventListener(this.dragOverEventName, function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        })
+        
+        uploader.addEventListener(this.dragLeaveEventName, function(e) {
             e.preventDefault();
             e.stopPropagation();
             context.dragFieldIdle();
         });
-
+        
         uploader.addEventListener(this.dropEventName, function(e) {
             e.preventDefault();
             e.stopPropagation();
-    
+            
             context.updateServerInfo();
             context.dragFieldIdle();
-    
             for (var i = 0; i < e.dataTransfer.files.length; i++) {
                 var data = new FormData();
                 data.append('upfile', e.dataTransfer.files[i]);
                 var xhr = context.prepareFileUploadRequest(e, context);
                 xhr.send(data);
+                break;
             }
         });
     }
@@ -114,6 +155,7 @@ class DragFieldManager {
 
 
 window.addEventListener('load', function () {
-    dragFieldManager = new DragFieldManager('uploader');
-    dragFieldManager.initDragField();
+    uploadManager = new UploadManager('uploader');
+    uploadManager.initDragField();
+    uploadManager.initButtonEvents();
   });
