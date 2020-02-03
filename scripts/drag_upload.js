@@ -36,6 +36,21 @@ class UploadManager {
         infotext.innerHTML = '';
     }
 
+    disableWindowDragAndDrop() {
+
+        function disable(e) {
+            e.preventDefault();
+        }
+
+        window.addEventListener(this.dropEventName, function(e) {
+            disable(e);
+        }, false);
+
+        window.addEventListener(this.dragOverEventName, function(e) {
+            disable(e);
+        }, false);
+    }
+
     getFilenameFromContentDisposition(header) {
         const quote = '"';
         var firstIndex = header.indexOf(quote);
@@ -156,6 +171,7 @@ class UploadManager {
 
 window.addEventListener('load', function () {
     uploadManager = new UploadManager('uploader');
+    uploadManager.disableWindowDragAndDrop();
     uploadManager.initDragField();
     uploadManager.initButtonEvents();
   });
