@@ -24,10 +24,14 @@ class UploadManager {
         uploader.className = this.dragFieldIdleName;
     }
 
-    updateServerInfo() {
+    updateServerInfo(info, severity='info') {
         var infotext = document.getElementById('infotext');
-        infotext.className = 'serverinfo';
-        infotext.innerHTML = 'Please wait, processing in progress...';
+        if(severity == 'info') {
+            infotext.className = 'serverinfo';
+        } else {
+            infotext.className = 'alarm';
+        }
+        infotext.innerHTML = info;
     }
 
     hideInfo() {
@@ -85,6 +89,8 @@ class UploadManager {
                     blob.name = context.getFilenameFromContentDisposition(contentDisposition);
                     var reader = context.prepareFileReader(blob, context);
                     reader.readAsDataURL(blob);
+                } else {
+                    context.updateServerInfo('Error occured: ' + xhr.status + ' Please check if: format of the file is mp3 or wav, file size does not exceed 10MB', 'alarm');
                 }
             } else {
                 alert('Upload error!');
@@ -99,7 +105,7 @@ class UploadManager {
     }
 
     getFileFromInput(e, context) {
-        context.updateServerInfo();
+        context.updateServerInfo('Please wait, processing in progress...');
         var upload = document.getElementById('upload');
         if('files' in upload) {
             for(var i = 0; i < upload.files.length; i++) {
@@ -155,7 +161,7 @@ class UploadManager {
             e.preventDefault();
             e.stopPropagation();
             
-            context.updateServerInfo();
+            context.updateServerInfo('Please wait, processing in progress...');
             context.dragFieldIdle();
             for (var i = 0; i < e.dataTransfer.files.length; i++) {
                 var data = new FormData();

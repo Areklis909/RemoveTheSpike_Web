@@ -27,6 +27,7 @@ body {
 .imagecontainer img {
 	width: 50%;
 	height: auto;
+	user-select: none;
 }
 
 .centeredtext {
@@ -141,6 +142,11 @@ dd.neednewlineafterthis::after {
 
 .serverinfo {
 	color: #1fe678;
+}
+
+.alarm {
+	color: #aa170c;
+	font-weight: bold;
 }
 
 

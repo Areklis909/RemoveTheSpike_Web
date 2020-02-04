@@ -12,6 +12,10 @@
 					<p>
 						RemoveTheSpike is a free online tool used to eliminate impulse disturbances from audio recordings.
 					</p>
+					<div class="uploaderidle" id="uploader">Drag file here</div>
+					<input id="upload" type="file" name="upfile"/>
+					<input id='submit' type="submit" onclick="" value="Upload File" name="submit" />
+					<p id="infotext"></p>
 					<p>
 						<dl>
 							<dt>Impulse disturbance - what is it?</dt>
@@ -29,14 +33,7 @@
 
 								</p>
 							</dd>
-						</dl>
-							<div class="uploaderidle" id="uploader">Drag file here</div>
-							<input id="upload" type="file" name="upfile"/>
-							<input id='submit' type="submit" onclick="" value="Upload File" name="submit" />
-							<p id="infotext"></p>
 
-							<span class="neednewlineafterthis"></span>
-						<dl>
 							<dt>How are they created?</dt>
 							<dd>
 								<p>

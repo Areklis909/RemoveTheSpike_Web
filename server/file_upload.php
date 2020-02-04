@@ -30,9 +30,9 @@ try {
     
     $sender = new FileSender();
     $sender->file_send($file_processor->get_output_file_full_path());
-} catch (RuntimeException $e) {
-
-    echo $e->getMessage();
-
+} catch (Exception $e) {
+    $response = array('status' => 'error', 'message' => $e->getMessage());
+    http_response_code($e->getCode());
+    die(json_encode($response));
 }
 ?>
