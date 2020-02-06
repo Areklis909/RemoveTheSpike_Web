@@ -65,14 +65,13 @@ class UploadManager {
     prepareFileReader(blob, context) {
         var fileReader = new FileReader();
         fileReader.onload = e => {
-            const anchor = document.createElement('a');
-            anchor.style.display = 'none';
-            anchor.href = e.target.result;
-            anchor.download = blob.name;
-            context.hideInfo();
-            anchor.click();
+                const anchor = document.createElement('a');
+                anchor.style.display = 'none';
+                anchor.href = e.target.result;
+                anchor.download = blob.name;
+                context.hideInfo();
+                anchor.click();
         };
-
         return fileReader;
     }
 
@@ -83,12 +82,23 @@ class UploadManager {
         xhr.onload = function (e) {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    const filetype = xhr.getResponseHeader('Content-type');
-                    const contentDisposition = xhr.getResponseHeader('Content-disposition');
-                    var blob = new Blob([xhr.response], {type: filetype});
-                    blob.name = context.getFilenameFromContentDisposition(contentDisposition);
-                    var reader = context.prepareFileReader(blob, context);
-                    reader.readAsDataURL(blob);
+                    var promise = new Promise(function(resolve, reject) {
+                        const filetype = xhr.getResponseHeader('Content-type');
+                        const contentDisposition = xhr.getResponseHeader('Content-disposition');
+                        var blob = new Blob([xhr.response], {type: filetype});
+                        blob.name = context.getFilenameFromContentDisposition(contentDisposition);
+                        var reader = context.prepareFileReader(blob, context);
+                        reader.readAsDataURL(blob);
+                        resolve(blob.name);
+                    }).then(function(filename) {
+                        var chart = document.getElementById('chart');
+                        var downloadImage = new Image();
+                        downloadImage.onload = function() {
+                            chart.src = this.src;
+                        };
+
+                        downloadImage.src = '../img/' + filename;
+                    })
                 } else {
                     context.updateServerInfo('Error occured: ' + xhr.status + ' Please check if: format of the file is mp3 or wav, file size does not exceed 10MB', 'alarm');
                 }

@@ -19,7 +19,7 @@ class FileMover {
     }
 
     function __destruct() {
-        $this->clean_up();
+        // $this->clean_up();
     }
 
     function clean_up() {

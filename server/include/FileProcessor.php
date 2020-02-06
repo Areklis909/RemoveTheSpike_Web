@@ -17,14 +17,6 @@ class FileProcessor {
     private $log_file;
     private $pid_file;
 
-    // private $model_order;
-    // private $signal_length;
-    // private $mi;
-    // private $lambda;
-    // private $lambda_zero;
-    // private $output_file;
-    // private $offset;
-
     function __construct($file_to_process_full_path, $processed_file_destination) {
         $this->output_full_path = $processed_file_destination;
         $this->file_full_path = $file_to_process_full_path;
@@ -32,7 +24,7 @@ class FileProcessor {
     }
 
     function __destruct() {
-        $this->clean_up();
+        // $this->clean_up();
     }
 
     function remove_the_spike() {

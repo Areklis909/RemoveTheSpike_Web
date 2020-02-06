@@ -16,6 +16,7 @@
 					<input id="upload" type="file" name="upfile"/>
 					<input id='submit' type="submit" onclick="" value="Upload File" name="submit" />
 					<p id="infotext"></p>
+					<img id="chart" src="" draggable="false">
 					<p>
 						<dl>
 							<dt>Impulse disturbance - what is it?</dt>
