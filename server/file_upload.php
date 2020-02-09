@@ -26,7 +26,11 @@ try {
     
     $file_processor = new FileProcessor($mover->get_target_file_name_full_path(), $full_destination_path);
     $file_processor->remove_the_spike();
-    $file_processor->wait_for_process_to_end($file_processor->read_pid());
+    $file_processor->generate_chart_before();
+    $file_processor->wait_for_process_to_end($file_processor->read_remove_the_spike_pid());
+    $file_processor->wait_for_chart_before();
+    $file_processor->generate_chart_after();
+    $file_processor->wait_for_chart_after();
     
     $sender = new FileSender();
     $sender->file_send($file_processor->get_output_file_full_path());

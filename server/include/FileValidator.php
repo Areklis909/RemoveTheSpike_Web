@@ -35,6 +35,7 @@ class FileValidator {
 
     function parse_errors($errors) {
         if (!isset($errors) || is_array($errors)) {
+            echo 'humus';
             throw new InternalErrorException('Invalid parameters.');
         }
     
@@ -49,6 +50,7 @@ class FileValidator {
             case UPLOAD_ERR_FORM_SIZE:
                 throw new FileSizeIncorrectException(self::exceeded_filesize_str);
             default:
+                echo 'gunwo';
                 throw new InternalErrorException(self::unknown_error_str);
         }   
     }
