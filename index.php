@@ -14,9 +14,10 @@
 					</p>
 					<div class="uploaderidle" id="uploader">Drag file here</div>
 					<input id="upload" type="file" name="upfile"/>
-					<input id='submit' type="submit" onclick="" value="Upload File" name="submit" />
+					<input id='submit' type="submit" value="Upload File" name="submit" />
 					<p id="infotext"></p>
-					<img id="chart" src="" draggable="false">
+					<div id="chartcontainer"> 
+					</div>
 					<p>
 						<dl>
 							<dt>Impulse disturbance - what is it?</dt>
@@ -49,10 +50,6 @@
 							</dd>
 						</dl>
 					</p>
-					<!-- <div class="uploaderidle" id="uploader">Drag file here</div>
-						<input id="upload" type="file" name="upfile"/>
-						<input id='submit' type="submit" onclick="" value="Upload File" name="submit" />
-					<p id="infotext"></p> -->
 				</div>
 			</div>
 			<div class="rightcolumn">

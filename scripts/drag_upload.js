@@ -41,7 +41,6 @@ class UploadManager {
     }
 
     disableWindowDragAndDrop() {
-
         function disable(e) {
             e.preventDefault();
         }
@@ -93,8 +92,12 @@ class UploadManager {
                     }).then(function(filename) {
                         var chart = document.getElementById('chart');
                         var downloadImage = new Image();
+                        
                         downloadImage.onload = function() {
-                            chart.src = this.src;
+                            var container = document.getElementById('chartcontainter');
+                            var img = document.createElement('img');
+                            img.setAttribute('src', this.src);
+                            container.appendChild(img);
                         };
 
                         downloadImage.src = '../img/' + filename;
@@ -128,7 +131,6 @@ class UploadManager {
     }
 
     initButtonEvents() {
-
         if(this.checkSupport() == false) {
             alert("Your browser is probably lacking the support some features needed for this website to work correctly. Please update or use another browser.");
             return;
