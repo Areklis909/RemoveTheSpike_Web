@@ -5,6 +5,10 @@ matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 
+def get_chart_title(suffix):
+    mapping = {'_before' : 'Before processing', '_after' : 'After processing'}
+    return mapping[suffix]
+
 def get_basename(file_path):
     tokens = file_path.split('/')
     return tokens[-1]
@@ -40,9 +44,12 @@ samples = file_info[0]
 
 length = len(samples)
 
+axes = plt.gca()
+axes.set_ylim([-1.0, 1.0])
+axes.set_xlim([0, length])
+plt.title(get_chart_title(suffix))
 plt.grid(True)
+plt.xlabel('samples [k]');
 plt.plot(samples)
-
-remove_white_margins()
 
 plt.savefig(output_file, bbox_inches = 'tight', pad_inches = 0)

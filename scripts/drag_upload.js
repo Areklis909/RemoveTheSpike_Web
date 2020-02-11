@@ -74,6 +74,22 @@ class UploadManager {
         return fileReader;
     }
 
+    getChartNames(filename) {
+        var suffixes = ['after', 'before'];
+        var output = [];
+
+        var pos = filename.indexOf('.');
+        var radical = filename.slice(0, pos);
+        
+        var suffix = suffixes[0];
+        for(suffix of suffixes) {
+            var tmp = radical + '_' + suffix + '.png';
+            output.push(tmp);
+        }
+
+        return output;
+    }
+
     prepareFileUploadRequest(e, context) {
         var xhr = new XMLHttpRequest();
         xhr.responseType = "blob"; // important - w/o this it will deform audio file
@@ -90,20 +106,23 @@ class UploadManager {
                         reader.readAsDataURL(blob);
                         resolve(blob.name);
                     }).then(function(filename) {
-                        var chart = document.getElementById('chart');
-                        var downloadImage = new Image();
-                        
-                        downloadImage.onload = function() {
-                            var container = document.getElementById('chartcontainter');
-                            var img = document.createElement('img');
-                            img.setAttribute('src', this.src);
-                            container.appendChild(img);
-                        };
 
-                        downloadImage.src = '../img/' + filename;
+                        var chart_names = context.getChartNames(filename);
+                        for(var i = 0; i < chart_names.length; i++) {
+                            var downloadImage = new Image();
+                            
+                            downloadImage.onload = function() {
+                                var container = document.getElementById('charts');
+                                var img = document.createElement('img');
+                                img.setAttribute('src', this.src);
+                                container.appendChild(img);
+                            };
+                            
+                            downloadImage.src = '../chart/' + chart_names[i];
+                        }
                     })
                 } else {
-                    context.updateServerInfo('Error occured: ' + xhr.status + ' Please check if: format of the file is mp3 or wav, file size does not exceed 10MB', 'alarm');
+                    context.updateServerInfo('Error occured: ' + xhr.status + ' Please report it using details in Contact tab', 'alarm');
                 }
             } else {
                 alert('Upload error!');
