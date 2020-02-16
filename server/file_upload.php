@@ -12,7 +12,6 @@ define('slash', '/');
 $full_upload_path = realpath(upload_path) . slash;
 $full_destination_path = realpath(destination_path) . slash;
 
-header('Content-Type: text/plain; charset=utf-8');
 
 try {
     $validator = new FileValidator();

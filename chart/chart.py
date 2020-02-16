@@ -35,21 +35,27 @@ def remove_white_margins():
 if len(sys.argv) < 3:
     raise NameError('Missing input filename!');
 
+#get command line arguments
 filename = sys.argv[1]
 suffix = sys.argv[2]
 output_file = sys.argv[3]
-print(filename)
+
+#read data and fs
 file_info = af.read(filename)
 samples = file_info[0]
+fs = file_info[1]
 
+#prepare the data
 length = len(samples)
+xvalues = map(lambda x: float(x) / fs, range(length))
 
-axes = plt.gca()
+#take care of axis legends etc.
+axes = plt.gca() # gca - Get Chart Axes
 axes.set_ylim([-1.0, 1.0])
-axes.set_xlim([0, length])
+axes.set_xlim([0, xvalues[-1]])
 plt.title(get_chart_title(suffix))
 plt.grid(True)
-plt.xlabel('samples [k]');
-plt.plot(samples)
+plt.xlabel('time [s]')
 
-plt.savefig(output_file, bbox_inches = 'tight', pad_inches = 0)
+plt.plot(xvalues, samples)
+plt.savefig(output_file)

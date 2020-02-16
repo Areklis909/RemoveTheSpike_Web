@@ -150,6 +150,11 @@ dd.neednewlineafterthis::after {
 	font-weight: bold;
 }
 
+.chartstyle {
+    display: block;
+	margin: auto auto;
+}
+
 
 
 

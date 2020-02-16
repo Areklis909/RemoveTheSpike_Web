@@ -90,7 +90,16 @@ class UploadManager {
         return output;
     }
 
+    clearChartArea() {
+        var chartArea = document.getElementById('charts');
+        while(chartArea.firstChild) {
+            chartArea.removeChild(chartArea.firstChild);
+        }
+    }
+
     prepareFileUploadRequest(e, context) {
+        context.clearChartArea();
+        
         var xhr = new XMLHttpRequest();
         xhr.responseType = "blob"; // important - w/o this it will deform audio file
         xhr.open('POST', '../server/file_upload.php', true);
@@ -115,6 +124,8 @@ class UploadManager {
                                 var container = document.getElementById('charts');
                                 var img = document.createElement('img');
                                 img.setAttribute('src', this.src);
+                                img.setAttribute('draggable', 'false');
+                                img.className = 'chartstyle';
                                 container.appendChild(img);
                             };
                             
