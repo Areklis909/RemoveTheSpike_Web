@@ -8,6 +8,7 @@ echo '<head>
 											
 		<title>RemoveTheSpike - impulse disturbance elimination</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css?">
+		<link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
 	</head>
 	<body>
 	

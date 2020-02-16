@@ -11,7 +11,7 @@ class FileProcessor {
     const before_suffix = '_before';
     const after_suffix = '_after';
     const binary_path = 'bin/removeTheSpike';
-    const chart_generator_path = '../chart/chart.py';
+    const chart_generator_path = '../scripts/chart.py';
     const python_call = 'python';
     const rm_command = 'rm ';
     const slash = '/';
