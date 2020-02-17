@@ -35,7 +35,6 @@ class FileValidator {
 
     function parse_errors($errors) {
         if (!isset($errors) || is_array($errors)) {
-            echo 'humus';
             throw new InternalErrorException('Invalid parameters.');
         }
     

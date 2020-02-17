@@ -8,6 +8,11 @@ class UploadManager {
         this.dragLeaveEventName = 'dragleave';
         this.dragOverEventName = 'dragover';
         this.dropEventName = 'drop';
+        this.severityInfo = 'info';
+        this.severityAlarm = 'alarm';
+        this.chartPath = '../chart/';
+        this.uploadScript = '../server/file_upload.php';
+        this.removeChartsScript = '../server/remove_charts.php';
     }
 
     checkSupport() {
@@ -26,7 +31,7 @@ class UploadManager {
 
     updateServerInfo(info, severity='info') {
         var infotext = document.getElementById('infotext');
-        if(severity == 'info') {
+        if(severity == this.severityInfo) {
             infotext.className = 'serverinfo';
         } else {
             infotext.className = 'alarm';
@@ -97,12 +102,23 @@ class UploadManager {
         }
     }
 
+    getXHR(serverScript, responseType='blob', requestType='POST') {
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = responseType // important - w/o this it will deform audio file
+        xhr.open(requestType, serverScript, true);  
+        return xhr;      
+    }
+
+    getChartNameFromURI(uri) {
+        var index = uri.lastIndexOf('/');
+        var chartName = uri.slice(index + 1, uri.length);
+        return chartName;
+    }
+
     prepareFileUploadRequest(e, context) {
         context.clearChartArea();
         
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = "blob"; // important - w/o this it will deform audio file
-        xhr.open('POST', '../server/file_upload.php', true);
+        var xhr = context.getXHR(context.uploadScript);
         xhr.onload = function (e) {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -117,19 +133,27 @@ class UploadManager {
                     }).then(function(filename) {
 
                         var chart_names = context.getChartNames(filename);
-                        for(var i = 0; i < chart_names.length; i++) {
+                        for(name of chart_names) {
                             var downloadImage = new Image();
-                            
-                            downloadImage.onload = function() {
-                                var container = document.getElementById('charts');
-                                var img = document.createElement('img');
-                                img.setAttribute('src', this.src);
-                                img.setAttribute('draggable', 'false');
-                                img.className = 'chartstyle';
-                                container.appendChild(img);
+                            downloadImage.onload = function(e) {
+                                var prm = new Promise(function(resolve, reject) {
+                                    var container = document.getElementById('charts');
+                                    var img = document.createElement('img');
+                                    img.setAttribute('src', e.target.src);
+                                    img.setAttribute('draggable', 'false');
+                                    img.className = 'chartstyle';
+                                    container.appendChild(img);
+                                    resolve(e.target.src);
+                                }).then(function(chartURI) {
+                                    var chartToRemove = context.getChartNameFromURI(chartURI);
+                                    var removeChartXhr = context.getXHR(context.removeChartsScript);
+                                    var chartData = new FormData();
+                                    chartData.append('charts_to_remove', chartToRemove);
+                                    removeChartXhr.send(chartData);
+                                })
                             };
                             
-                            downloadImage.src = '../chart/' + chart_names[i];
+                            downloadImage.src = context.chartPath + name;
                         }
                     })
                 } else {
