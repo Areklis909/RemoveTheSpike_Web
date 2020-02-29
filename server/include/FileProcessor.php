@@ -11,6 +11,7 @@ class FileProcessor {
     const before_suffix = '_before';
     const after_suffix = '_after';
     const binary_path = 'bin/removeTheSpike';
+    const configuration_path = 'bin/Configuration.cfg';
     const chart_generator_path = '../scripts/chart.py';
     const python_call = 'python';
     const rm_command = 'rm ';
@@ -26,6 +27,7 @@ class FileProcessor {
     private $chart_pid_after;
     private $chart_before_file_name;
     private $chart_after_file_name;
+    private $configuration_file_path;
 
 
     function __construct($file_to_process_full_path, $processed_file_destination) {
@@ -36,6 +38,8 @@ class FileProcessor {
         $this->pid_file = realpath(self::pid_path) . self::slash . $this->file_name . self::pid_ending;
         $this->chart_pid_before = realpath(self::pid_path) . self::slash . $this->file_name . self::before_suffix . self::pid_ending;
         $this->chart_pid_after = realpath(self::pid_path) . self::slash . $this->file_name . self::after_suffix . self::pid_ending;
+        $this->configuration_file_path = realpath(self::configuration_path);
+        error_log('Arek: config path: ' . $this->configuration_file_path);
 
         $part = strtok($this->file_name, '.');
         $file_name_no_format = $part;
@@ -48,9 +52,9 @@ class FileProcessor {
     }
 
     function remove_the_spike() {
-        $command = sprintf('%s --signalLength %s --filename %s --outputFile %s > %s & echo $! > %s',
-        self::binary_path, self::process_all_samples, $this->file_full_path, $this->output_full_path . $this->file_name, 
-        $this->log_file, $this->pid_file);
+        $command = sprintf('%s --signalLength %s --filename %s --outputFile %s --config %s > %s & echo $! > %s',
+        self::binary_path, self::process_all_samples, $this->file_full_path, $this->output_full_path . $this->file_name,
+            $this->configuration_file_path, $this->log_file, $this->pid_file);
         exec($command);
     }
 
@@ -97,7 +101,7 @@ class FileProcessor {
                 sleep(1);
             } while($condition == true && $repetition < self::max_check_repetitions);
         } catch(Exception $e) {
-            echo 'Expetion occured';
+            echo 'Excpetion occured';
         }
     }
 
@@ -124,6 +128,3 @@ class FileProcessor {
         return $this->output_full_path . $this->file_name;
     }
 }
-
-
-?>
