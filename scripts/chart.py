@@ -47,8 +47,8 @@ fs = file_info[1]
 
 #prepare the data
 length = len(samples)
-xvalues = map(lambda x: float(x) / fs, range(length))
 
+xvalues = [float(x)/fs for x in range(length)]
 #take care of axis legends etc.
 axes = plt.gca() # gca - Get Chart Axes
 axes.set_ylim([-1.0, 1.0])

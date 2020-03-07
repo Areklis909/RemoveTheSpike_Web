@@ -10,7 +10,7 @@ class UploadManager {
         this.dropEventName = 'drop';
         this.severityInfo = 'info';
         this.severityAlarm = 'alarm';
-        this.chartPath = '../chart/';
+        this.chartPath = '../charts/';
         this.uploadScript = '../server/file_upload.php';
         this.removeChartsScript = '../server/remove_charts.php';
     }

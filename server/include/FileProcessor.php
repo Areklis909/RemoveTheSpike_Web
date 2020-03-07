@@ -6,14 +6,14 @@ class FileProcessor {
     const pid_ending = '.pid';
     const log_path = '../logs/';
     const log_ending = '.log';
-    const chart_path = '../chart';
+    const chart_path = '../charts';
     const chart_ending = '_chart';
     const before_suffix = '_before';
     const after_suffix = '_after';
     const binary_path = 'bin/removeTheSpike';
     const configuration_path = 'bin/Configuration.cfg';
     const chart_generator_path = '../scripts/chart.py';
-    const python_call = 'python';
+    const python_call = 'python3';
     const rm_command = 'rm ';
     const slash = '/';
     const process_all_samples = -1;
@@ -39,7 +39,6 @@ class FileProcessor {
         $this->chart_pid_before = realpath(self::pid_path) . self::slash . $this->file_name . self::before_suffix . self::pid_ending;
         $this->chart_pid_after = realpath(self::pid_path) . self::slash . $this->file_name . self::after_suffix . self::pid_ending;
         $this->configuration_file_path = realpath(self::configuration_path);
-        error_log('Arek: config path: ' . $this->configuration_file_path);
 
         $part = strtok($this->file_name, '.');
         $file_name_no_format = $part;

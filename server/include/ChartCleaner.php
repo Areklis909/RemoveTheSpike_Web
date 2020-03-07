@@ -4,7 +4,7 @@ class ChartCleaner {
 
     private $chart_to_remove;
 
-    const chart_path = '../chart/';
+    const chart_path = '../charts/';
     const slash = '/';
     const rm_command = 'rm ';
 
