@@ -152,7 +152,9 @@ dd.neednewlineafterthis::after {
 
 .chartstyle {
     display: block;
-	margin: auto auto;
+    margin: auto auto;
+    max-width: 100%;
+    max_height: 100%;
 }
 
 
