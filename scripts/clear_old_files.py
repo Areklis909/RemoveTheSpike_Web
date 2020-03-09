@@ -5,7 +5,7 @@ from stat import *
 
 path = sys.argv[1]
 older_then_in_hours = int(sys.argv[2])
-older_then_in_seconds = older_then_in_hours * 60
+older_then_in_seconds = older_then_in_hours * 60 * 60
 
 files_in_directory = os.listdir(path)
 
