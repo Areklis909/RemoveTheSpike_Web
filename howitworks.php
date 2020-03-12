@@ -17,6 +17,7 @@
 							It is used to estimate the next sample value. If the difference between the actual
 							sample and the estimation is too big, it is likely that we encountered an impulse disturbance.
 						</dd>
+						</br>
 						<dt>Variance estimation</dt>
 						<dd>
 							In order to know how much the sample value can deviate from the estimated value, we need to know 
@@ -24,6 +25,7 @@
 							variance we obtain standard deviation. If the prediction error is several times greater than standard
 							deviation, we can start to repair the damaged samples.
 						</dd>
+						</br>
 						<dt>Kalman filtering</dt>
 						<dd>
 							Kalman filter is a state observer. RemoveTheSpike uses it to detect the length of damanged samples block
@@ -34,6 +36,7 @@
 							of the damaged block. Then, it treats all samples from the damaged block as damaged and uses only samples that are
 							known to be correct to fix the corrupted part of recording.
 						</dd>
+						</br>
 					</dl>
 				</p>
 			</div>
