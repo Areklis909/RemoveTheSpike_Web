@@ -53,11 +53,12 @@
 			</div>
 			<div class="rightcolumn">
 				<div class="card">
-					<h2>Last post</h2>
+					<h2>Please read this</h2>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						This website does not provide confidentiality of the uploaded data. 
+						It means that someone eavsedropping on the Internet traffic can hijack what you send.
+						I will try my best to add the SSL/TLS in the future.
 					</p>
-
 				</div>
 			</div>
 		</section>
