@@ -23,13 +23,12 @@
 							In order to know how much the sample value can deviate from the estimated value, we need to know 
 							the variance of the white noise that creates the audio signal. If we apply a square root to the
 							variance we obtain standard deviation. If the prediction error is several times greater than standard
-							deviation, we can start to repair the damaged samples.
+							deviation, we can consider the sample as corrupted.
 						</dd>
 						</br>
 						<dt>Kalman filtering</dt>
 						<dd>
-							Kalman filter is a state observer. RemoveTheSpike uses it to detect the length of damanged samples block
-							and to interpolate (fix) it. Kalman filter operates in 2 stages: prediction and filtration.
+							Kalman filter is a state observer. It operates in 2 stages: prediction and filtration.
 							In the first step, classic Kalman filter estimates the samples values and their uncertainties.
 							In the second step, we take into account the values of the samples from the recording and update the estimation.
 							RemoveTheSpike uses a bit different approach. Before interpolation, it uses Kalman filter to compute the length
