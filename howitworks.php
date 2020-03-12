@@ -7,10 +7,10 @@
 		<section class="row">
 			<div class="card">
 				<h2>How it works?</h2>
-				<p>First of all, try it yourself!</p>
+				<p>First of all, try it yourself! Theory later!</p>
 				<p>
 					<a href="downloads/example.wav" download="example.wav">Download</a> the sample recording with impulse disturbances and drag and drop it
-					on the <a href="index.php">main webpage</a>. After a while the chart 'before-after' should pop-up, and download should start.
+					on the <a href="index.php">main webpage</a>. After a while the 'before-after' chart should pop-up and download should start.
 				</p>
 				<p>
 					RemoveTheSpike eliminates impulse disturbances using several techniques:

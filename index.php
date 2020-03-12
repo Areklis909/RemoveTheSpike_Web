@@ -57,6 +57,7 @@
 					<p>
 						This website does not provide confidentiality of the uploaded data. 
 						It means that someone eavsedropping on the Internet traffic can hijack what you send.
+						</br>
 						I will try my best to add the SSL/TLS in the future.
 					</p>
 				</div>
