@@ -32,13 +32,13 @@ RUN chown -R www-data:www-data $SERVER_DIR \
     && cp '~'/RemoveTheSpike_bin/* $BINARY_DIR \
     && rm -r '~'
 
-ENV CRON_FILE /var/spool/cron/$USR
+ENV CRON_FILE /etc/cron.d/hello
 ENV CRON_BINARY /usr/bin/crontab
-ENV SCRIPT_TO_CALL $SERVER_DIR/scripts/clear_old_files.py
+ENV SCRIPT_TO_CALL $SERVER_DIR/scripts/clear_old_files
 ENV LOG_FILE_LIFETIME_IN_HOURS 48
-ENV CRON_COMMAND 0 0 * * * python3 $SCRIPT_TO_CALL $SERVER_DIR\$LOGS_DIR $LOG_FILE_LIFETIME_IN_HOURS
 
-RUN touch $CRON_FILE && $CRON_BINARY $CRON_FILE \
+RUN touch $CRON_FILE && touch /var/log/cronlog \
+ # && echo '* * * * * python3 /var/www/html/scripts/clear_old_files /var/www/html/logs 1 --minutes' > $CRON_FILE \
    && echo -n '0 0' >> $CRON_FILE \
    && echo -n ' * * * ' >> $CRON_FILE \
    && echo -n python3 >> $CRON_FILE \
@@ -50,5 +50,9 @@ RUN touch $CRON_FILE && $CRON_BINARY $CRON_FILE \
    && echo -n $LOGS_DIR >> $CRON_FILE \
    && echo -n ' ' >> $CRON_FILE \
    && echo -n $LOG_FILE_LIFETIME_IN_HOURS >> $CRON_FILE \
-   && echo '\n' >> $CRON_FILE
+   && echo -n ' ' >> $CRON_FILE \   
+   #&& echo -n  '> /dev/null 2>&1' >> $CRON_FILE \
+   && echo '\n' >> $CRON_FILE \
+   && $CRON_BINARY $CRON_FILE
 
+CMD sh $SERVER_DIR/start.sh
