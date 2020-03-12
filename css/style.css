@@ -157,6 +157,14 @@ dd.neednewlineafterthis::after {
     max_height: 100%;
 }
 
+a:link {
+	color: rgb(233, 205, 205);
+}
+
+a:visited {
+	color:  rgb(47, 236, 30);
+}
+
 
 
 
