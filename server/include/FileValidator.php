@@ -27,10 +27,12 @@ class FileValidator {
 
     function is_extension_valid($filename) {
         $this->ext = pathinfo($filename, PATHINFO_EXTENSION);
-        error_log('File format: ' . $this->ext);
         $valid_extension = array_search($this->ext, self::extension_array);
-        if($valid_extension == false) {
+        if($valid_extension == false || $valid_extension == NULL) {
+            error_log('extension exception');
             throw new WrongFormatException('Invalid extension.');
+        } else {
+            error_log('extension ok');
         }
     }
 
