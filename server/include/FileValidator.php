@@ -5,8 +5,9 @@ include('include/Exceptions.php');
 class FileValidator {
     
     const extension_array = array(
-        'mp3',
-        'wav'
+        'flac',
+        'wav',
+        'ogg'
     );
 
     const no_file_sent_str = 'No file sent.';
