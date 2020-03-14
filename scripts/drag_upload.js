@@ -119,6 +119,7 @@ class UploadManager {
         context.clearChartArea();
         
         var xhr = context.getXHR(context.uploadScript);
+        
         xhr.onload = function (e) {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -157,7 +158,7 @@ class UploadManager {
                         }
                     })
                 } else {
-                    context.updateServerInfo('Error occured: ' + xhr.status + ' Please report it using details in Contact tab', 'alarm');
+                    context.updateServerInfo('Error occured: ' + xhr.statusText + '. Check the file format. If it is supported report the problem using Contact tab', 'alarm');
                 }
             } else {
                 alert('Upload error!');
