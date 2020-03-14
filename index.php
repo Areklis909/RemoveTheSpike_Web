@@ -35,11 +35,13 @@
 						<h2>How are they created?</h2>
 						<p>
 							We can often hear impulse disturbances while listening to recordings which are digitalized versions of analog registrations.
-							This is because the quality of the analog medium where the sound is stored deteriorates due to aging process, temperature, humidity and many more... 
+							This is because the quality of the analog medium where the sound is stored deteriorates due to aging process, temperature,
+							humidity and many other factors.
 						</p>
 						<p>
-							Let's take a gramophone record - the sound is read using a thin needle which fits into the groove in the record.
-							The groove's shape reflects the registered audio. On early gramophones, the needle was attached to the diaphragme which produced sound while vibrating.
+							Let's take a gramophone record - the sound is read using a thin needle which fits into the groove on the record.
+							The groove's shape reflects the registered audio. On early gramophones, the needle was attached to the diaphragme which produced
+							sound while vibrating.
 							Multiple replays later the groove might start to deform and disturbances of many kinds may be introduced.
 						</p>
 					</p>
