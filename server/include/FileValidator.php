@@ -27,6 +27,7 @@ class FileValidator {
 
     function is_extension_valid($filename) {
         $this->ext = pathinfo($filename, PATHINFO_EXTENSION);
+        error_log('File format: ' . $this->ext);
         $valid_extension = array_search($this->ext, self::extension_array);
         if($valid_extension == false) {
             throw new WrongFormatException('Invalid extension.');
