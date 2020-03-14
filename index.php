@@ -59,6 +59,9 @@
 						It means that someone eavsedropping on the Internet traffic can hijack what you send.
 						</br>
 						I will try my best to add the SSL/TLS in the future.
+						</br>
+						I don't keep or store your data - as soon as the processing is done the resources are deleted, both
+						original and processed one.
 					</p>
 				</div>
 			</div>

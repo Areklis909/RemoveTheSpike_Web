@@ -9,6 +9,7 @@ echo '<head>
 		<title>RemoveTheSpike - impulse disturbance elimination</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css?">
 		<link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
+		<script data-ad-client="ca-pub-9366858970539946" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	</head>
 	<body>
 	
