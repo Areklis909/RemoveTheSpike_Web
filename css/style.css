@@ -169,6 +169,11 @@ a:visited {
     color:  rgb(47, 236, 30);
 }
 
+.image_enlarge > img:hover {
+	width: 500px;
+	height: 200px;
+  }
+
 
 
 

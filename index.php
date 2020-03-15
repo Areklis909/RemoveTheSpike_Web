@@ -52,7 +52,11 @@
 						The green line is an estimation error, and the blue one is an alarm threshold. Can you see where the
 						estimation error is greater than alarm threshold? This sample range will be fixed with the interpolation
 						algorithm. To learn more go to <a href="howitworks.php">How it works</a>.
-						<img class="chartstyle" src="img/alarm_image.png" draggable="false" alt="An example of impulse disturbance, estimation error and alarm threshold">
+						<div class="image_enlarge">
+							<p>
+								<img class="chartstyle" src="img/alarm_image.png" draggable="false" alt="An example of impulse disturbance, estimation error and alarm threshold">
+							</p>
+						</div>
 					</p>
 
 			</div>
