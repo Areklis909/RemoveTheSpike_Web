@@ -161,6 +161,20 @@ dd.neednewlineafterthis::after {
     max_height: 100%;
 }
 
+.small_img {
+    width: 20%;
+    height: 15%;
+    display: block;
+    margin: auto auto;
+}
+
+.small_img:hover {
+    width: 170%;
+    height: 170%;
+    display: block;
+    margin: auto auto;
+}
+
 a:link {
     color: rgb(233, 205, 205);
 }
@@ -168,11 +182,6 @@ a:link {
 a:visited {
     color:  rgb(47, 236, 30);
 }
-
-.image_enlarge > img:hover {
-	width: 500px;
-	height: 200px;
-  }
 
 
 
