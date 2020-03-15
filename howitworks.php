@@ -54,12 +54,12 @@
 				<p>
 					There is an automated way to assess the quality of the track. Perceptual Evaluation of Audio Quality (PEAQ) is a standardized
 					algorithm which allows to measure audio properties. It is designed to mimic human ear perception. It uses several psycho-acoustic
-					standards and combines them into a set of numeric parameters describing signal. During my work with the algorithm I used Objective
+					standards and combines them into a set of numeric parameters describing the signal. During my work with the algorithm I used Objective
 					Difference Grade (ODG). Its possible value range is [-4, 0], where -4 means that disturbances are 'very annoying', and 0 means they are
 					'imperceptible'.
 				</p>
 				<p>
-					How do I tested quality improvement while working on RemoveTheSpike?
+					How did I test the quality improvement while working on RemoveTheSpike?
 					PEAQ requires two audio input files, one for reference the other one for test. 
 					In the first step I create an audio file with artificailly introduced impulse disturbances added to the 'clean' track.
 					Then I feed PEAQ algorithm with 'clean' track as a reference and 'disturbed' file as a test input.

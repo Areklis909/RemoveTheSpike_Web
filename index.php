@@ -8,7 +8,8 @@
 			<div class="card">
 				<p>
 					RemoveTheSpike is a free online tool used to eliminate impulse disturbances from audio recordings.
-					</br>
+				</p>
+				<p>
 					Supported file types: WAV, FLAC, OGG.
 				</p>
 				<p>
@@ -51,7 +52,6 @@
 				<p>
 					This website does not provide confidentiality of the uploaded data. 
 					It means that someone eavesdropping on the Internet traffic can hijack what you send.
-					</br>
 					I will try my best to add the SSL/TLS in the future.
 				</p>
 				<p>
