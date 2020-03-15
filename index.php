@@ -78,7 +78,7 @@
 		</section>
 	</main>
 	
-	<p id="thanks">
+	<p class="thanks">
 		Contents based on the PhD thesis: "Elimination of impulsive disturbances from archive audio
 		recordings" by Marcin Ciolek.
 	</p>
