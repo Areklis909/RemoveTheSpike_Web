@@ -44,6 +44,42 @@
 					</dl>
 				</p>
 			</div>
+			<div class="card">
+				<h2>Perceptual Evaluation of Audio Quality</h2>
+				<p>
+					It is difficult to be sure that the quality of the recording has improved after using RemoveTheSpike or any other tool.
+					Verification process requires listening carefully to the whole track, which might be time-consuming if the audio set
+					contains tens or hundreds of records. 
+				</p>
+				<p>
+					There is an automated way to assess the quality of the track. Perceptual Evaluation of Audio Quality (PEAQ) is a standardized
+					algorithm which allows to measure audio properties. It is designed to mimic human ear perception. It uses several psycho-acoustic
+					standards and combines them into a set of numeric parameters describing signal. During my work with the algorithm I used Objective
+					Difference Grade (ODG). Its possible value range is [-4, 0], where -4 means that disturbances are 'very annoying', and 0 means they are
+					'imperceptible'.
+				</p>
+				<p>
+					How do I tested quality improvement while working on RemoveTheSpike?
+					PEAQ requires two audio input files, one for reference the other one for test. 
+					In the first step I create an audio file with artificailly introduced impulse disturbances added to the 'clean' track.
+					Then I feed PEAQ algorithm with 'clean' track as a reference and 'disturbed' file as a test input.
+					PEAQ should produce ODG values (PEAQ divides audio file on chunks, each chunk gets assigned ODG value).
+					Let's call them ODG1 and save them somewhere.
+				</p>
+				<p>
+					In the second step, I processed 'disturbed' file with RemoveTheSpike and used the output file as a test input
+					and original one as a reference. Again, PEAQ should produce set of ODG values, save them as ODG2.
+				</p>
+				<p>
+					Now, having 2 files, I can compare chunks one-by-one and assess the improvement/deterioration of audio quality.
+					Try to write some script that would do it for you. Or, maybe you can compute average from ODG1 and ODG2 and compare them?
+					This way you can obtain more 'global' view on the resulting audio file quality.
+				</p>
+				<p>
+					I used <a href=https://github.com/akinori-ito/peaqb-fast>this</a> PEAQ implementation by github user akinori-ito.
+					I downloaded the code and built in on my WSL Ubuntu machine. 
+				</p>
+			</div>
 		</section>
 	
 		<aside></aside>
