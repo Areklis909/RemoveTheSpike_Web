@@ -46,6 +46,15 @@
 						sound while vibrating.
 						Multiple replays later the groove might start to deform and disturbances of many kinds may be introduced.
 					</p>
+					<p>
+						On the picture below you can see 3 curves. The purple one is an audio signal showing impulse disturbance.
+						Most people would describe it as a clicking noise. Two other curves are specific to the disturbance cancellation algorithm.
+						The green line is an estimation error, and the blue one is an alarm threshold. Can you see where the
+						estimation error is greater than alarm threshold? This sample range will be fixed with the interpolation
+						algorithm. To learn more go to <a href="howitworks.php">How it works</a>.
+						<img class="chartstyle" src="img/alarm_image.png" draggable="false" alt="An example of impulse disturbance, estimation error and alarm threshold">
+					</p>
+
 			</div>
 			<div id="disclaimer" class="card">
 				<h2>Please read this</h2>
