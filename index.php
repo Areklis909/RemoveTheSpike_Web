@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-US">	
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Arkadiusz Lis">
+		<meta name="description" content="RemoveTheSpike is a free online tool which can help you to remove impulse disturbances from your digital audio recordings.
+											If you are annoyed by ticks, pops, crackles and clicks while listening to your favorite recordings, this tool is probably for you.">
+		<title>RemoveTheSpike | Impulse disturbance elimination</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css?">
+		<link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
+		<script data-ad-client="ca-pub-9366858970539946" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	</head>
+	<body>
+
 	<?php
-		include 'server/header_and_menu.php';
+		include 'server/menu.php';
 	?>
 	<main>
 		<section id="start" class="row">

@@ -1,7 +1,19 @@
 <!DOCTYPE html>
-<html lang="en-US">		
+<html lang="en-US">	
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Arkadiusz Lis">
+		<meta name="description" content="Here I will try to outline how spike elimination algorithm works. Basic components are described: 
+			autoregressive model, variance estimation and Kalman filtering. I also mention PEAQ standard, it was used to assess RemoveTheSpike 
+			abilities to fix the audio signals.">
+		<title>RemoveTheSpike | How spike elimination works</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css?">
+		<link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
+		<script data-ad-client="ca-pub-9366858970539946" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	</head>
+	<body>	
 	<?php
-		include 'server/header_and_menu.php';
+		include 'server/menu.php';
 	?>
 	<main>
 		<section class="row">
