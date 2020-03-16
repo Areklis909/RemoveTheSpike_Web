@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="author" content="Arkadiusz Lis">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="You can find here details to contact the author of the webiste and report error regarding impulse disturbance algorithm.">	
 		<title>RemoveTheSpike | Contact</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css?">

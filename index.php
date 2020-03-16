@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="author" content="Arkadiusz Lis">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="RemoveTheSpike is a free online tool which can help you to remove impulse disturbances from your digital audio recordings.
 											If you are annoyed by ticks, pops, crackles and clicks while listening to your favorite recordings, this tool is probably for you.">
 		<title>RemoveTheSpike | Impulse disturbance elimination</title>
