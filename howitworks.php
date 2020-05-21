@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="author" content="Arkadiusz Lis">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Here I will try to outline how spike elimination algorithm works. Basic components are described: 
 			autoregressive model, variance estimation and Kalman filtering. I also mention PEAQ standard, it was used to assess RemoveTheSpike 
 			abilities to fix the audio signals.">
