@@ -13,6 +13,7 @@ class UploadManager {
         this.chartPath = '../charts/';
         this.uploadScript = '../server/file_upload.php';
         this.removeChartsScript = '../server/remove_charts.php';
+        this.filename = '';
     }
 
     checkSupport() {
@@ -20,18 +21,18 @@ class UploadManager {
     }
 
     dragFieldActive() {
-        var uploader = document.getElementById(this.dragField);
+        let uploader = document.getElementById(this.dragField);
         uploader.className = this.dragFieldActiveName;
     }
-    
+
     dragFieldIdle() {
-        var uploader = document.getElementById(this.dragField);
+        let uploader = document.getElementById(this.dragField);
         uploader.className = this.dragFieldIdleName;
     }
 
-    updateServerInfo(info, severity='info') {
-        var infotext = document.getElementById('infotext');
-        if(severity == this.severityInfo) {
+    updateServerInfo(info, severity = 'info') {
+        let infotext = document.getElementById('infotext');
+        if (severity == this.severityInfo) {
             infotext.className = 'serverinfo';
         } else {
             infotext.className = 'alarm';
@@ -40,7 +41,7 @@ class UploadManager {
     }
 
     hideInfo() {
-        var infotext = document.getElementById('infotext');
+        let infotext = document.getElementById('infotext');
         infotext.className = '';
         infotext.innerHTML = '';
     }
@@ -50,45 +51,45 @@ class UploadManager {
             e.preventDefault();
         }
 
-        window.addEventListener(this.dropEventName, function(e) {
+        window.addEventListener(this.dropEventName, function (e) {
             disable(e);
         }, false);
 
-        window.addEventListener(this.dragOverEventName, function(e) {
+        window.addEventListener(this.dragOverEventName, function (e) {
             disable(e);
         }, false);
     }
 
     getFilenameFromContentDisposition(header) {
         const quote = '"';
-        var firstIndex = header.indexOf(quote);
-        var lastIndex = header.lastIndexOf(quote);
+        let firstIndex = header.indexOf(quote);
+        let lastIndex = header.lastIndexOf(quote);
         return header.substr(firstIndex + 1, lastIndex - firstIndex - 1);
     }
 
-    prepareFileReader(blob, context) {
-        var fileReader = new FileReader();
+    prepareFileReader(context) {
+        let fileReader = new FileReader();
         fileReader.onload = e => {
-                const anchor = document.createElement('a');
-                anchor.style.display = 'none';
-                anchor.href = e.target.result;
-                anchor.download = blob.name;
-                context.hideInfo();
-                anchor.click();
+            const anchor = document.createElement('a');
+            anchor.style.display = 'none';
+            anchor.href = e.target.result;
+            anchor.download = context.filename;
+            context.hideInfo();
+            anchor.click();
         };
         return fileReader;
     }
 
     getChartNames(filename) {
-        var suffixes = ['after', 'before'];
-        var output = [];
+        let suffixes = ['after', 'before'];
+        let output = [];
 
-        var pos = filename.indexOf('.');
-        var radical = filename.slice(0, pos);
-        
-        var suffix = suffixes[0];
-        for(suffix of suffixes) {
-            var tmp = radical + '_' + suffix + '.png';
+        let pos = filename.indexOf('.');
+        let radical = filename.slice(0, pos);
+
+        let suffix = suffixes[0];
+        for (suffix of suffixes) {
+            let tmp = radical + '_' + suffix + '.png';
             output.push(tmp);
         }
 
@@ -96,155 +97,147 @@ class UploadManager {
     }
 
     clearChartArea() {
-        var chartArea = document.getElementById('charts');
-        while(chartArea.firstChild) {
+        let chartArea = document.getElementById('charts');
+        while (chartArea.firstChild) {
             chartArea.removeChild(chartArea.firstChild);
         }
     }
 
-    getXHR(serverScript, responseType='blob', requestType='POST') {
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = responseType // important - w/o this it will deform audio file
-        xhr.open(requestType, serverScript, true);  
-        return xhr;      
-    }
-
     getChartNameFromURI(uri) {
-        var index = uri.lastIndexOf('/');
-        var chartName = uri.slice(index + 1, uri.length);
+        let index = uri.lastIndexOf('/');
+        let chartName = uri.slice(index + 1, uri.length);
         return chartName;
     }
 
-    prepareFileUploadRequest(e, context) {
-        context.clearChartArea();
-        
-        var xhr = context.getXHR(context.uploadScript);
-        
-        xhr.onload = function (e) {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    var promise = new Promise(function(resolve, reject) {
-                        const filetype = xhr.getResponseHeader('Content-type');
-                        const contentDisposition = xhr.getResponseHeader('Content-disposition');
-                        var blob = new Blob([xhr.response], {type: filetype});
-                        blob.name = context.getFilenameFromContentDisposition(contentDisposition);
-                        var reader = context.prepareFileReader(blob, context);
-                        reader.readAsDataURL(blob);
-                        resolve(blob.name);
-                    }).then(function(filename) {
-
-                        var chart_names = context.getChartNames(filename);
-                        for(name of chart_names) {
-                            var downloadImage = new Image();
-                            downloadImage.onload = function(e) {
-                                var prm = new Promise(function(resolve, reject) {
-                                    var container = document.getElementById('charts');
-                                    var img = document.createElement('img');
-                                    img.setAttribute('src', e.target.src);
-                                    img.setAttribute('draggable', 'false');
-                                    img.className = 'chartstyle';
-                                    container.appendChild(img);
-                                    resolve(e.target.src);
-                                }).then(function(chartURI) {
-                                    var chartToRemove = context.getChartNameFromURI(chartURI);
-                                    var removeChartXhr = context.getXHR(context.removeChartsScript);
-                                    var chartData = new FormData();
-                                    chartData.append('charts_to_remove', chartToRemove);
-                                    removeChartXhr.send(chartData);
-                                })
-                            };
-                            
-                            downloadImage.src = context.chartPath + name;
-                        }
-                    })
-                } else {
-                    context.updateServerInfo('Error occured: ' + xhr.statusText + '. Check the file format. If it is supported report the problem using Contact tab', 'alarm');
-                }
-            } else {
-                alert('Upload error!');
-            }
-        };
-
-        xhr.onerror = function (e) {
-            alert('Upload error!');
-        };
-
-        return xhr;
+    getFilenameFromContentDisposition(content) {
+        let openingQuote = content.indexOf('"') + 1;
+        let closingQuote = content.lastIndexOf('"');
+        return content.substring(openingQuote, closingQuote);
     }
 
-    getFileFromInput(e, context) {
-        context.updateServerInfo('Please wait, processing in progress...');
-        var upload = document.getElementById('upload');
-        if('files' in upload) {
-            for(var i = 0; i < upload.files.length; i++) {
-                var data = new FormData();
-                data.append('upfile', upload.files[i]);
-                var xhr = context.prepareFileUploadRequest(e, context);
-                xhr.send(data);
+    prepareImageContainer(event) {
+        let container = document.getElementById('charts');
+        let img = document.createElement('img');
+        img.setAttribute('src', event.target.src);
+        img.setAttribute('draggable', 'false');
+        img.className = 'chartstyle';
+        container.appendChild(img);
+    }
+
+    manageCharts(context, chartNames) {
+        for (name of chartNames) {
+            let image = new Image();
+            image.onload = (e) => {
+                context.prepareImageContainer(e);
+                let chartToRemove = context.getChartNameFromURI(e.target.src);
+                let chartData = new FormData();
+                chartData.append('charts_to_remove', chartToRemove);
+                fetch(context.removeChartsScript, {
+                    method: 'POST',
+                    body: chartData
+                })
+                .catch(err => {
+                    context.updateServerInfo('Error occured: ' + err + '. Check the file format. If it is supported report the problem using Contact tab', 'alarm');
+                });
             }
+            image.src = context.chartPath + name;
         }
     }
 
+    processFiles(context, formData) {
+        context.clearChartArea();
+        fetch(context.uploadScript, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            let content = response.headers.get('Content-disposition');
+            context.filename = context.getFilenameFromContentDisposition(content);
+            return response.blob();
+        })
+        .then(blob => {
+            context.prepareFileReader(context).readAsDataURL(blob);
+        })
+        .then(() => {
+            let chartNames = context.getChartNames(context.filename);
+            context.manageCharts(context, chartNames);
+        })
+        .catch(err => {
+            console.log(`Error: ${err}`);
+            context.updateServerInfo('Error occured: ' + err + '. Check the file format. If it is supported report the problem using Contact tab', 'alarm');
+        });
+    }
+
+    processFileFromInput(e, context) {
+        context.updateServerInfo('Please wait, processing in progress...');
+        let fileInput = document.getElementById('upload');
+        let formData = new FormData();
+        if(fileInput.files.length > 0) {
+            formData.append('upfile', fileInput.files[0]);
+        }
+        context.processFiles(context, formData);
+    }
+
     initButtonEvents() {
-        if(this.checkSupport() == false) {
+        if (this.checkSupport() == false) {
             alert("Your browser is probably lacking the support some features needed for this website to work correctly. Please update or use another browser.");
             return;
         }
 
-        var submit = document.getElementById('submit');
-        var context = this;
-        submit.addEventListener('click', function(e) {
-            context.getFileFromInput(e, context);
+        let submit = document.getElementById('submit');
+        let context = this;
+        submit.addEventListener('click', (e) => {
+            context.processFileFromInput(e, context);
         });
     }
 
     initDragField() {
 
-        if(this.checkSupport() == false) {
+        if (this.checkSupport() == false) {
             return;
         }
 
-        var uploader = document.getElementById(this.dragField);
-        var context = this;
+        let uploader = document.getElementById(this.dragField);
+        let context = this;
 
-        uploader.addEventListener(this.dragEnterEventName, function(e) {
+        uploader.addEventListener(this.dragEnterEventName, (e) => {
             e.preventDefault();
             e.stopPropagation();
             context.dragFieldActive();
         });
 
-        uploader.addEventListener(this.dragOverEventName, function(e) {
+        uploader.addEventListener(this.dragOverEventName, (e) => {
             e.preventDefault();
             e.stopPropagation();
         })
-        
-        uploader.addEventListener(this.dragLeaveEventName, function(e) {
+
+        uploader.addEventListener(this.dragLeaveEventName, (e) => {
             e.preventDefault();
             e.stopPropagation();
             context.dragFieldIdle();
         });
-        
-        uploader.addEventListener(this.dropEventName, function(e) {
+
+        uploader.addEventListener(this.dropEventName, (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
+
             context.updateServerInfo('Please wait, processing in progress...');
             context.dragFieldIdle();
-            for (var i = 0; i < e.dataTransfer.files.length; i++) {
-                var data = new FormData();
-                data.append('upfile', e.dataTransfer.files[i]);
-                var xhr = context.prepareFileUploadRequest(e, context);
-                xhr.send(data);
-                break;
+            let data = new FormData();
+            if(e.dataTransfer.files.length > 0) {
+                data.append('upfile', e.dataTransfer.files[0]);
+            } else {
+                throw Error("Problem occured with receiving the files");
             }
+            context.processFiles(context, data);
         });
     }
 }
 
 
-window.addEventListener('load', function () {
+window.addEventListener('load', () => {
     uploadManager = new UploadManager('uploader');
     uploadManager.disableWindowDragAndDrop();
     uploadManager.initDragField();
     uploadManager.initButtonEvents();
-  });
+});
